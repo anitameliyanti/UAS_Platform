@@ -1,3 +1,3 @@
-Pengumpulan UAS Pemrograman Berbasi Platform
+Pengumpulan UAS Pemrograman Berbasis Platform
 
 Anita Meliyanti - 2110018
