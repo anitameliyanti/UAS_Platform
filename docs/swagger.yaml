@@ -1,0 +1,215 @@
+basePath: /
+definitions:
+  models.LoginUser:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.Product:
+    properties:
+      harga:
+        type: number
+      id:
+        type: integer
+      nama_produk:
+        type: string
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      nama:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API CRUD menggunakan bahasa GO - Anita Meliyanti 2110018
+  title: API UAS Pemrograman Berbasis Platform
+  version: "1.0"
+paths:
+  /api/login:
+    post:
+      consumes:
+      - application/json
+      description: Untuk melakukan login bisa menggunakan get all user untuk melihat
+        semua user
+      parameters:
+      - description: Login user
+        in: body
+        name: loginUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginUser'
+      summary: Login user
+  /api/products:
+    get:
+      description: Daftar semua produk
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Product'
+            type: array
+      summary: Tampil semua produk
+    post:
+      consumes:
+      - application/json
+      description: Membuat produk baru
+      parameters:
+      - description: Produk yang akan dibuat
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Product'
+      summary: Membuat produk baru
+  /api/products/{id}:
+    delete:
+      description: Hapus produk menggunakan ID
+      parameters:
+      - description: ID Produk
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Hapus produk
+    put:
+      consumes:
+      - application/json
+      description: Merubah atau update produk
+      parameters:
+      - description: ID Produk
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update Produk
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+      summary: Update Produk
+  /api/users:
+    get:
+      description: Menampilkan daftar semua user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      summary: Tampilan semua user
+    post:
+      consumes:
+      - application/json
+      description: Membuat user baru
+      parameters:
+      - description: User yang akan dibuat
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Create user
+  /api/users/{id}:
+    delete:
+      description: Hapus user
+      parameters:
+      - description: ID Pengguna
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Hapus user menggunakan ID
+    put:
+      consumes:
+      - application/json
+      description: Update user dengan menggunakan ID
+      parameters:
+      - description: ID Pengguna
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Update user
+schemes:
+- http
+- https
+swagger: "2.0"
